@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VybMedia - Auth Callback</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; color: #333; text-align: center; }
+    h1 { color: #111; }
+    .code-box { background: #f4f4f4; border: 2px solid #ccc; border-radius: 8px; padding: 20px; margin: 20px 0; word-break: break-all; font-family: monospace; font-size: 14px; text-align: left; }
+    .copy-btn { background: #1da1f2; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+    .copy-btn:hover { background: #0d8ecf; }
+    .success { color: green; font-weight: bold; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>🎬 VybMedia Auth</h1>
+  <div id="output"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const out = document.getElementById('output');
+
+    if (code) {
+      out.innerHTML = `
+        <p class="success">✅ Authorization successful! Copy the code below and send it to ClipBot:</p>
+        <div class="code-box" id="codebox">${code}</div>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('codebox').innerText).then(()=>this.innerText='Copied!')">Copy Code</button>
+      `;
+    } else if (error) {
+      out.innerHTML = `<p class="error">❌ Error: ${error} — ${params.get('error_description') || ''}</p>`;
+    } else {
+      out.innerHTML = `<p>No authorization code found in URL.</p>`;
+    }
+  </script>
+</body>
+</html>
