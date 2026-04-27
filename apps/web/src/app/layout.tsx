@@ -1,0 +1,18 @@
+import type { Metadata } from "next";
+import { AppShell } from "../components/app-shell";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "VYB",
+  description: "Music-first social platform for tracks, snippets, and automixed vybs."
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <AppShell>{children}</AppShell>
+      </body>
+    </html>
+  );
+}
