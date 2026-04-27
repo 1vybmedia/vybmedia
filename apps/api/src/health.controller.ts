@@ -1,5 +1,5 @@
 import { Controller, Get } from "@nestjs/common";
-import { ApiHealthResponse } from "@vyb/shared";
+import type { ApiHealthResponse } from "@vyb/shared";
 
 @Controller("health")
 export class HealthController {

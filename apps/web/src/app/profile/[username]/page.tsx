@@ -1,11 +1,17 @@
-export default function ProfilePage({ params }: { params: { username: string } }) {
+type ProfilePageProps = {
+  params: Promise<{ username: string }>;
+};
+
+export default async function ProfilePage({ params }: ProfilePageProps) {
+  const { username } = await params;
+
   return (
     <section className="page-stack">
       <div className="profile-header">
         <div className="avatar" aria-hidden="true" />
         <div>
           <p className="eyebrow">Profile</p>
-          <h1>@{params.username}</h1>
+          <h1>@{username}</h1>
           <p className="muted">Tracks, vybs, snippets, and reposts will land here.</p>
         </div>
       </div>
